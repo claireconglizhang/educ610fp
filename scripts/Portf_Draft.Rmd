@@ -17,6 +17,7 @@ library(ggmap)
 library(RColorBrewer)
 library(ggrepel)
 
+
 files <- list.files(here::here("data"),
                     full.names = TRUE)
 files
@@ -24,6 +25,11 @@ files
 d <- read_csv(files[1]) %>%
   clean_names()
 ```
+
+Hi Brock,
+Excellent work on this. One little suggestion is that (I also have this issue and am trying to work on it) if you didn't use the package such as ggrepel, you may want to consider removing it from the setup chunk.
+
+Claire
 
 Starting by looking at students score histogram.  \FloatBarrier
 ```{r plot_scores}
@@ -34,8 +40,17 @@ ggplot(d, aes(rit)) +
 Looking at data by disability categories.  \FloatBarrier
 ```{r plot_disab_cat}
 ggplot(d, aes(disability_code)) +
-  geom_histogram(bins = 20)
+  geom_histogram(bins = 20, fill="cornflowerblue")+
+  labs(title="The Title",
+       x="Disability Code",
+       y="Student Number")+
+  theme_minimal()
 ```
+Hi Brock,
+The histograms above are super intuitive. I think I would add titles for them since every plot should stand alone by its own and adding titles and footnotes should help people to interprete. I don't know particular what title to add though so I just write the code labs() and leave it empty.
+You may also want to twist the color and theme a bit, e.g., using theme_minimal().
+Hope it's helpful.
+Claire
 
 Starting with a simple map of the U.S  \FloatBarrier
 ```{r map_1, fig.width = 8, fig.height = 6}
@@ -102,3 +117,8 @@ or_base +
   labs(title = "Student Participation by School Location in Oregon",
          subtitle = "Oregon's Extended Assessment for students with significant cognitive disabilities ")
 ```
+
+Hi Brock,
+The ggmap plots are amazing! Great work. Somehow the title of map_4 doesn't show up on my screen and if yours is fine please ignore this. I would also consider modifying labels for x and y asis to make them more interpretable.
+
+Claire
